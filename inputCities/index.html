@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <title>Document</title>
+  <style>
+     .loader {
+            display: none;
+            width: 150px;
+            height: 150px;
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            left: 45%;
+            top: 20%;
+        }
+
+        .loader:after {
+            content: " ";
+            display: block;
+            width: 150px;
+            height: 150px;
+            margin: 1px;
+            border-radius: 50%;
+            border: 5px solid #00416A;
+            border-color: #00416A transparent #00416A transparent;
+            animation: loader 1.2s linear infinite;
+        }
+
+        @keyframes loader {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .dropdown-lists__country {
+          min-width: 90px;
+        }
+
+        .dropdown-lists__total-line img {
+          max-height: 20px;
+        }
+
+        .dropdown-lists__list--default {
+          display: block;
+          width: 0;
+          height: 0;
+          opacity: 0;
+          transition: transform 0.35s;
+          transform: scale(0.5);
+        }
+
+        .slide-out {
+          height: auto;
+          width: 430px;
+          opacity: 1;
+          transform: scale(1);
+        }
+
+        .dropdown-lists__list--select {
+          display: block;
+          width: 0;
+          opacity: 0;
+          transition: transform 0.35s;
+          transform: scale(1.5);
+        }
+
+        .slide-in {
+          transform: scale(1);
+          opacity: 1;
+          width: 430px;
+        }
+        .lang {
+          display: flex; 
+          justify-content: center; 
+          margin-bottom: 15px;
+        }
+
+        .lang-container {
+          display: none;
+          position: fixed;
+          width: 100%;
+          height: 100%;
+          top: 20%;
+        }
+
+        .lang div {
+            color: white;
+            text-decoration: none;
+            padding: 5px;
+            border: 1px solid white;
+            width: 65px;
+            text-align: center;
+            margin-right: 5px;
+            float: left;
+            font-size: 20px;
+            transition: all 0.5s;
+        }
+
+        .lang div:hover {
+            background: white;
+            color: #00416A;
+            cursor: pointer;
+        }
+
+        .lang-text {
+          width: 180px;
+          margin: 10px auto;
+          color: white;
+          font-size: 24px;
+        }
+  </style>
+</head>
+
+<body>
+  <div class="lang-container">
+    <div class="lang-text">Выберете язык</div>  
+    <div class="lang">
+      <div>RU</div>
+      <div>EN</div>
+      <div>DE</div>
+    </div>
+  </div>
+  <div class="loader"></div>
+  <section class="main">
+    <div class="input-cities" style='display: none;'>
+      <input id="select-cities" type="text" placeholder="">
+      <div class="close-button"></div>
+      <label class="label" for="select-cities">Страна или город</label>
+      <span class="focus-border"><i></i></span>
+      <div class="dropdown">
+        <div class="dropdown-lists">
+          <div class="dropdown-lists__list dropdown-lists__list--default">
+            <div class="dropdown-lists__col"></div>
+          </div>
+          <div class="dropdown-lists__list dropdown-lists__list--select">
+            <div class="dropdown-lists__col"></div>
+          </div>
+          <div class="dropdown-lists__list dropdown-lists__list--autocomplete">
+            <div class="dropdown-lists__col"></div>
+          </div>
+        </div>
+      </div>
+      <a class="button" href="#">Перейти</a>
+    </div>
+  </section>
+
+<script src="db_cities.js"></script>
+</body>
+
+</html>
