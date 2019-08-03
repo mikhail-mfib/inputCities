@@ -205,6 +205,7 @@ const execJs = (data) => {
                 label.textContent = 'Страна или город';
                 input.value = '';
                 closeButton.style.display = 'none';
+                button.style = 'pointer-events: none';
             }
 
             removeChildren(listSelectCol);
@@ -240,28 +241,34 @@ const execJs = (data) => {
         if( evt.target.closest('.dropdown-lists__line') || 
             evt.target.closest('.dropdown-lists__total-line')) 
         {
+            if(evt.target.closest('.dropdown-lists__line')) {
+                listDefault.classList.remove('slide-out');
+                listSelect.classList.remove('slide-in');
+                removeChildren(listSelectCol);
+            }
+
             let target = evt.target.closest('.dropdown-lists__total-line') ? evt.target.closest('.dropdown-lists__total-line') : evt.target.closest('.dropdown-lists__line');
 
             closeButton.style.display = 'block';
-
             input.focus();
             input.value = target.firstChild.textContent;
             button.href = getLink(target.firstChild.textContent);
             button.style = (button.href.slice(-1) !== '#') ? 'pointer-events: auto' : 'pointer-events: none';
-            
+
         }
         
     });
 
     //отображение результатов живого поиска
     input.addEventListener('keyup', (evt) => {
+        button.style = 'pointer-events: none';
+        
         if(evt.target.value) {
             listDefault.classList.remove('slide-out');
             listSelect.classList.remove('slide-in');
             closeButton.style.display = 'block';
             listAutocomplete.style.display = 'block';
             button.href = '#';
-            button.style = 'pointer-events: none';
 
             input.focus();
             removeChildren(listSelectCol);
